@@ -1,0 +1,16 @@
+---
+title: "hmk_01"
+author: "Katelyn Houghton"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Homework 1 practice with quarto and uploading to github
+
+## Running Code:
+
+```{r}
+print ("hello")
+```
