@@ -1,15 +1,15 @@
 ---
 title: "hmk_01"
 author: "Katelyn Houghton"
-format: html
+format: gfm
 editor: visual
 ---
 
-## Quarto
+## Homework
 
-Homework 1 practice with quarto and uploading to github
+Saving quarto file as a github flavored markdown file (gfm in the format field above). Quarto file \*.qmd. Github flavored markdown file \*.md. Submit both to github.
 
-## Running Code:
+## Very simple code that is not 1 + 1
 
 ```{r}
 print ("hello")
