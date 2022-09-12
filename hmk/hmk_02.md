@@ -35,6 +35,3 @@ ls()
 ```
 
     character(0)
-
-The `echo: false` option disables the printing of code (only output is
-displayed).
