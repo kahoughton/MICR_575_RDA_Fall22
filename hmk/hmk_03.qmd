@@ -34,7 +34,19 @@ glimpse(pups)
 
 ```
 
-I found the #head function more helpful because it arranged the summary in a table style that was easy to view.
+I found the #head function more helpful because it arranged the summary in a table style that was easy to view. Also we can use "summary" or "str"
+
+```{r, message=FALSE}
+
+summary(pups)
+
+```
+
+```{r, message=FALSE}
+
+str(pups)
+
+```
 
 # Manipulating data frames
 
@@ -84,3 +96,31 @@ pups[1, ]
 A data frame is an example of a list. I haven't discussed how to access elements of lists, but it is covered [here](https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1/index.html#lists)).
 
 Explain in what ways accessing elements of lists are like accessing columns of data frames, and given that, how it shows that data frames are a type of list.
+
+# Subsetting our dataframe
+
+https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting/index.html
+
+We can subset using logical operations
+
+```{r, message=FALSE}
+
+pups[c(TRUE, FALSE, TRUE, TRUE) , ]
+
+```
+
+We can subset using logical test of dogs that are ten years old
+
+```{r, message=FALSE}
+
+pups[pups$Age == 10, ]
+
+```
+
+Select dogs that are seven years or older
+
+```{r, message=FALSE}
+
+pups[pups$Age >= 7, ]
+
+```

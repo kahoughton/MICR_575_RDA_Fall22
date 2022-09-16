@@ -41,7 +41,38 @@ glimpse(pups)
     $ Fetch.skills <int> 5, 10
 
 I found the \#head function more helpful because it arranged the summary
-in a table style that was easy to view.
+in a table style that was easy to view. Also we can use “summary” or
+“str”
+
+``` r
+summary(pups)
+```
+
+         Pups                Age          Weight.lbs     Fluff.factor  
+     Length:2           Min.   : 7.00   Min.   :35.00   Min.   : 9.00  
+     Class :character   1st Qu.: 7.75   1st Qu.:36.25   1st Qu.: 9.25  
+     Mode  :character   Median : 8.50   Median :37.50   Median : 9.50  
+                        Mean   : 8.50   Mean   :37.50   Mean   : 9.50  
+                        3rd Qu.: 9.25   3rd Qu.:38.75   3rd Qu.: 9.75  
+                        Max.   :10.00   Max.   :40.00   Max.   :10.00  
+      Fetch.skills  
+     Min.   : 5.00  
+     1st Qu.: 6.25  
+     Median : 7.50  
+     Mean   : 7.50  
+     3rd Qu.: 8.75  
+     Max.   :10.00  
+
+``` r
+str(pups)
+```
+
+    'data.frame':   2 obs. of  5 variables:
+     $ Pups        : chr  "Sage" "Blue"
+     $ Age         : int  10 7
+     $ Weight.lbs  : int  35 40
+     $ Fluff.factor: int  10 9
+     $ Fetch.skills: int  5 10
 
 # Manipulating data frames
 
@@ -129,3 +160,37 @@ elements of lists, but it is covered
 Explain in what ways accessing elements of lists are like accessing
 columns of data frames, and given that, how it shows that data frames
 are a type of list.
+
+# Subsetting our dataframe
+
+https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting/index.html
+
+We can subset using logical operations
+
+``` r
+pups[c(TRUE, FALSE, TRUE, TRUE) , ]
+```
+
+         Pups Age Weight.lbs Fluff.factor Fetch.skills
+    1    Sage  10         35           10            5
+    NA   <NA>  NA         NA           NA           NA
+    NA.1 <NA>  NA         NA           NA           NA
+
+We can subset using logical test of dogs that are ten years old
+
+``` r
+pups[pups$Age == 10, ]
+```
+
+      Pups Age Weight.lbs Fluff.factor Fetch.skills
+    1 Sage  10         35           10            5
+
+Select dogs that are seven years or older
+
+``` r
+pups[pups$Age >= 7, ]
+```
+
+      Pups Age Weight.lbs Fluff.factor Fetch.skills
+    1 Sage  10         35           10            5
+    2 Blue   7         40            9           10
