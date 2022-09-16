@@ -1,0 +1,86 @@
+---
+title: "Homework 3"
+author: "Katelyn"
+format: gfm
+editor: visual
+---
+
+# Data input/output
+
+Use the tidyverse `read_csv()` function to read a .csv file of your own data. If you don't have any data of your own, make up an excel file with fake data.
+
+```{r, message=FALSE}
+
+library(tidyverse)
+
+#Load my data file 
+pups <- read.csv("hmk_03_data.csv")
+
+```
+
+# Investigating the properties of data frames
+
+Use two different functions that both give some kind of summary or overview of the data frame. Which one do you think is more useful?
+
+```{r, message=FALSE}
+
+head(pups)
+
+```
+
+```{r, message=FALSE}
+
+glimpse(pups)
+
+```
+
+I found the #head function more helpful because it arranged the summary in a table style that was easy to view.
+
+# Manipulating data frames
+
+Create a new column of your data frame by performing some kind of arithmetic operation on an existing column.
+
+```{r, message=FALSE}
+
+Fluff.percent <- pups$Fluff.factor *10
+
+cbind(pups, Fluff.percent)
+
+```
+
+# Working on columns
+
+Calculate the mean of a numeric column in your data frame.
+
+```{r, message=FALSE}
+
+mean(pups$Fetch.skills)
+
+```
+
+# Accessing elements of data frames
+
+-   [Challenge 3 from SC Data Structures lesson](https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1/index.html#challenge-3): Show what each of the following returns, and explain what each line of code is doing: \*\*Doing this instead for my pups data frame
+    -   `pups[1] this will call the first column, and lay it out top to bottom`
+    -   `pups[[1]] this will call the first column, but list the rows`
+    -   `pups$Age this calls the data from the Age column`
+    -   `pups[1, 1] this calls the data in the first row and column position`
+    -   `pups[ , 1] this calls everything in the first column, but leaving a specific row blank`
+    -   `pups[1, ] this calls the first row`
+
+```{r, message=FALSE}
+
+pups[1]
+pups[[1]]
+pups$Age
+pups[1, 1]
+pups[ , 1]
+pups[1, ]
+
+```
+
+# Optional challenge
+
+A data frame is an example of a list. I haven't discussed how to access elements of lists, but it is covered [here](https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1/index.html#lists)).
+
+Explain in what ways accessing elements of lists are like accessing columns of data frames, and given that, how it shows that data frames are a type of list.
