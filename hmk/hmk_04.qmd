@@ -1,0 +1,26 @@
+---
+title: "Homework 4"
+author: "Katelyn"
+format: gfm
+editor: visual
+---
+
+## Homework 4 
+
+Create your own graph, that is not a scatterplot.
+
+```{r, message=FALSE}
+
+library(tidyverse)
+
+syn <- read.csv("hmk4.csv")
+
+ggplot(syn, aes(x = day, y = cells.mL)) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(trans='log10') +
+  theme_minimal() 
+
+```
+
+
