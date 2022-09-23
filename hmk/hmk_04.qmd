@@ -5,9 +5,9 @@ format: gfm
 editor: visual
 ---
 
-## Homework 4 
+## Homework 4
 
-Create your own graph, that is not a scatterplot. This is a growth curve for a lab culture that ran for just under two weeks. 
+Create your own graph, that is not a scatterplot. This is a growth curve for a lab culture that ran for just under two weeks.
 
 ```{r, message=FALSE}
 
@@ -23,5 +23,3 @@ ggplot(syn, aes(x = day, y = cells.mL)) +
   theme_minimal() 
 
 ```
-
-
