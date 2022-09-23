@@ -2,7 +2,7 @@ Homework 4
 ================
 Katelyn
 
-## HMK_4
+## Homework 04
 
 Create your own graph, that is not a scatterplot. This is a growth curve
 for a lab culture that ran for just under two weeks.
