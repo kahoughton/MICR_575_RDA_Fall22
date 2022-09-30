@@ -55,6 +55,16 @@ q2 <- filter(flights, arr_time > 0, dep_time > 0)
 
 `ggplot()` will automatically remove NA values from the plot, as you may have seen in question 1, but it emits a warning message about that. Of course you could silence the warning message using [chunk options](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html), but how could you prevent them from appearing in the first place?
 
+```{r,  message=FALSE}
+
+#There are two options I can think of here. First is to use the filter function for all the variables you want to graph, since it automatically will remove NAs. 
+
+#Second you can create your new data frame and then use the function drop_na()
+
+q1 %>% drop_na() #where q1 is the dataframe we want to clean up
+
+```
+
 `q1 %>% drop_na() #where q1 is the dataframe we want to clean up`
 
 # Question 3: adding columns
@@ -65,6 +75,8 @@ Create a data frame of average flight speeds, based on `air_time` and `distance`
 
 q3 <- flights %>%
   mutate(avg_speed = 60*(distance / air_time))
+
+q3alternate <- mutate(flights, avg_speed = 60*(distance / air_time))
 
 ggplot(data = q3, aes(x = avg_speed)) +
   geom_histogram(color = "black", fill = "red")
