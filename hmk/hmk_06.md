@@ -185,7 +185,11 @@ nycflights13::flights %>% group_by(dest, month) %>%
 3.  Why is it slightly better to use aes(x = color, y = cut) rather than
     the alternative, in the example above?
 
-    **Answer**:
+    **Answer**: they are both categorical and neither are dependant on
+    one another, so nothing specific to the interpretation of the data.
+    I think it is just preference to how you want to view it and
+    potentially labels on the X axis running together if they are too
+    long.
 
 **Exercise 7.5.3.1**
 
