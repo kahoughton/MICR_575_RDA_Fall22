@@ -205,10 +205,16 @@ nycflights13::flights %>% group_by(dest, month) %>%
     hard to see relationships if boxplots look roughly the same
     regardless of how many observations there are per bin.
 
-    **Answer**: I could not get the freqpoly to work with price as the
-    Y, I kept getting the error that I cannot specify a Y for this geom.
-    So I did just carrot and the cut_number only produced one line along
-    the graph, while the cut_width produced several lines.
+    **Answer**: Cut_width() loses some of the data, while cut_number()
+    gave us more information about the data.
+
+``` r
+ggplot(data = diamonds,mapping = aes(color = cut_number(carat, 5), x = price)) +
+  geom_freqpoly() +
+  labs(x = "Price", y = "Count", color = "Carat")
+```
+
+![](hmk_06_files/figure-gfm/unnamed-chunk-5-1.png)
 
 2.  Visualize the distribution of carat, partitioned by price.
 
@@ -220,7 +226,7 @@ ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
   geom_boxplot(mapping = aes(group = cut_width(carat, 0.1)))
 ```
 
-![](hmk_06_files/figure-gfm/unnamed-chunk-5-1.png)
+![](hmk_06_files/figure-gfm/unnamed-chunk-6-1.png)
 
 3.  How does the price distribution of very large diamonds compare to
     small diamonds? It is as you expect, or does it surprise you?
@@ -236,11 +242,14 @@ ounce or size of diamonds goes down the bigger your rock gets.
     combined distribution of cut, carat, and price.
 
 ``` r
+smaller <- diamonds %>% 
+  filter(carat < 3) 
+
 ggplot(data = smaller, mapping = aes(x = carat, y = price)) + 
   geom_point(mapping = aes(color = cut))
 ```
 
-![](hmk_06_files/figure-gfm/unnamed-chunk-6-1.png)
+![](hmk_06_files/figure-gfm/unnamed-chunk-7-1.png)
 
 5.  Two dim plots reveal outliers that are not visible in one dim plots,
     some points in the plot have an unusual combination of x and y

@@ -121,7 +121,7 @@ nycflights13::flights %>% group_by(dest, month) %>%
 
 3.  Why is it slightly better to use aes(x = color, y = cut) rather than the alternative, in the example above?
 
-    **Answer**: they are both categorical and neither are dependant on one another, so nothing specific to the interpretation of the data. I think it is just preference to how you want to view it and potentially labels on the X axis running together if they are too long. 
+    **Answer**: they are both categorical and neither are dependant on one another, so nothing specific to the interpretation of the data. I think it is just preference to how you want to view it and potentially labels on the X axis running together if they are too long.
 
 **Exercise 7.5.3.1**
 
@@ -129,7 +129,15 @@ nycflights13::flights %>% group_by(dest, month) %>%
 
     **Answer**: cut_width() divides x into bins of specified width (can have different number of observations in each) while cut_number() divides x by the same number of points in each bin. You will need to take this into account when interpreting the plot, since it may be hard to see relationships if boxplots look roughly the same regardless of how many observations there are per bin.
 
-    **Answer**: I could not get the freqpoly to work with price as the Y, I kept getting the error that I cannot specify a Y for this geom. So I did just carrot and the cut_number only produced one line along the graph, while the cut_width produced several lines.
+    **Answer**: Cut_width() loses some of the data, while cut_number() gave us more information about the data. 
+    
+```{r, message=FALSE, warning = FALSE}
+
+ggplot(data = diamonds,mapping = aes(color = cut_number(carat, 5), x = price)) +
+  geom_freqpoly() +
+  labs(x = "Price", y = "Count", color = "Carat")
+
+```
 
 2.  Visualize the distribution of carat, partitioned by price.
 
@@ -151,6 +159,9 @@ ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
 4.  Combine two of the techniques you've learned to visualize the combined distribution of cut, carat, and price.
 
 ```{r, message=FALSE, warning = FALSE}
+smaller <- diamonds %>% 
+  filter(carat < 3) 
+
 ggplot(data = smaller, mapping = aes(x = carat, y = price)) + 
   geom_point(mapping = aes(color = cut))
 ```
