@@ -114,8 +114,8 @@ head(E2.DF.Final)
 
 Are the data sets different in any important way?
 
-**Answer**: Looks like all the data have the same mean and sd which
-probably is not true.. most likely I messed up the analysis. .
+**Answer**: Looks like all the data have the same mean and sd.
+Interesting.
 
 # Q2: pivoting
 
@@ -127,7 +127,21 @@ You will need to create a tidy data frame to do this.
 
 ``` r
 library(tidyverse)
+
+relig_income_long <- relig_income %>% 
+  pivot_longer(!religion, names_to = "income", values_to = "count") %>%
+  group_by(religion)
+
+relig_income_long$income <- factor(relig_income_long$income, levels = c("<$10K", "$10-20k", "$20-30k", "$30-40k", "$40-50k", "$50-75k", "$75-100k", "$100-150k", ">150k", "Don't know/refused" ))
+
+
+ggplot(data = relig_income_long, aes(x = income, y = count, fill = religion)) +
+  geom_col() +
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) + 
+  theme(legend.position = "bottom")
 ```
+
+![](hmk_8_files/figure-gfm/unnamed-chunk-3-1.png)
 
 # Q3: merging
 
@@ -136,9 +150,15 @@ library(tidyverse)
 Explain the difference between a left join, a right join, an inner join,
 and an outer join.
 
-``` r
-library(tidyverse)
-```
+**Answer:**
+
+1.  left join: keeps all the IDs in one DF and adds columns from the
+    other DF
+
+2.  right join: does the opposite of left join, so matching will be
+    based on DF2 and not DF1
+
+3.  inner join: keeps only the IDs from each DF
 
 ## Q3b: using joins
 
