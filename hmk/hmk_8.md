@@ -61,7 +61,19 @@ Are the data sets different in any important way?
 
 **Answer**: It does look like the X balls have a different mean of 9
 while the y balls have a mean around 7.5 Additionally, the SD of X balls
-is 3.31 and Y balls is around 2.03
+is 3.31 and Y balls is around 2.03. Doesn’t look like there is a
+difference between 1 - 4 sets of balls. UNTIL WE LOOK AT THE DATA. wow.
+very different distrubutions.
+
+``` r
+library(tidyverse)
+
+ggplot(data = E1.DF, (aes(x = x, y = y))) +
+  geom_point() +
+  facet_wrap("balls")
+```
+
+![](hmk_8_files/figure-gfm/unnamed-chunk-2-1.png)
 
 ## Q1b
 
@@ -115,7 +127,18 @@ head(E2.DF.Final)
 Are the data sets different in any important way?
 
 **Answer**: Looks like all the data have the same mean and sd.
-Interesting.
+Interesting.UNTIL we plot. Each dataset clearly has a different
+distribution. nice. nice.
+
+``` r
+library(tidyverse)
+
+ggplot(data = E2.DF, (aes(x = x, y = y))) +
+  geom_point() +
+  facet_wrap("dataset")
+```
+
+![](hmk_8_files/figure-gfm/unnamed-chunk-4-1.png)
 
 # Q2: pivoting
 
@@ -141,7 +164,7 @@ ggplot(data = relig_income_long, aes(x = income, y = count, fill = religion)) +
   theme(legend.position = "bottom")
 ```
 
-![](hmk_8_files/figure-gfm/unnamed-chunk-3-1.png)
+![](hmk_8_files/figure-gfm/unnamed-chunk-5-1.png)
 
 # Q3: merging
 
