@@ -15,11 +15,53 @@ Create a data frame that contains the mean, standard deviation, and
 number of points for each treatment. You will want to use functions like
 `summarise()`, `group_by()`, `mean()`, and `sd()`.
 
-Are the data sets different in any important way?
-
 ``` r
 library(tidyverse)
+
+E1.DF <- read.csv("experiment1.csv")
+
+view(E1.DF)
+
+E1.DF.MX <- 
+  E1.DF %>% group_by(balls) %>% summarise(mean_balls_x = mean(x)) 
+
+E1.DF.MY <- 
+  E1.DF %>% group_by(balls) %>% summarise(mean_balls_y = mean(y)) 
+
+E1.DF.M <- inner_join(E1.DF.MX, E1.DF.MY, by="balls")
+
+E1.DF.SDX <-
+  E1.DF %>% group_by(balls) %>% summarise(sd_balls_x = sd(x))
+
+E1.DF.SDY <-
+  E1.DF %>% group_by(balls) %>% summarise(sd_balls_y = sd(y))
+
+E1.DF.SD <- inner_join(E1.DF.SDX, E1.DF.SDY, by="balls")
+
+E1.DF.N <-
+  E1.DF %>% group_by(balls) %>% count(balls)
+
+
+E1.DF.Join1 <- inner_join(E1.DF.M, E1.DF.SD, by="balls")
+
+E1.DF.Final <- inner_join(E1.DF.Join1, E1.DF.N, by="balls")                                      
+
+head(E1.DF.Final)
 ```
+
+    # A tibble: 4 × 6
+      balls mean_balls_x mean_balls_y sd_balls_x sd_balls_y     n
+      <int>        <dbl>        <dbl>      <dbl>      <dbl> <int>
+    1     1            9         7.50       3.32       2.03    11
+    2     2            9         7.50       3.32       2.03    11
+    3     3            9         7.5        3.32       2.03    11
+    4     4            9         7.50       3.32       2.03    11
+
+Are the data sets different in any important way?
+
+**Answer**: It does look like the X balls have a different mean of 9
+while the y balls have a mean around 7.5 Additionally, the SD of X balls
+is 3.31 and Y balls is around 2.03
 
 ## Q1b
 
@@ -29,7 +71,51 @@ questions as above.
 
 ``` r
 library(tidyverse)
+
+E2.DF <- read.csv("experiment2.csv")
+view(E1.DF)
+
+E2.DF.MX <- 
+  E2.DF %>% group_by(dataset) %>% summarise(mean_dataset_x = mean(x)) 
+
+E2.DF.MY <-     
+  E2.DF %>% group_by(dataset) %>% summarise(mean_dataset_y = mean(y)) 
+
+E2.DF.M <- inner_join(E2.DF.MX, E2.DF.MY, by="dataset")
+
+E2.DF.SDX <-
+  E2.DF %>% group_by(dataset) %>% summarise(sd_dataset_x = sd(x))
+
+E2.DF.SDY <-
+  E2.DF %>% group_by(dataset) %>% summarise(sd_dataset_y = sd(y))
+
+E2.DF.SD <- inner_join(E2.DF.SDX, E2.DF.SDY, by="dataset")
+
+E2.DF.N <-
+  E2.DF %>% group_by(dataset) %>% count(dataset)
+
+
+E2.DF.Join1 <- inner_join(E2.DF.M, E2.DF.SD, by="dataset")
+
+E2.DF.Final <- inner_join(E2.DF.Join1, E2.DF.N, by="dataset")                                      
+
+head(E2.DF.Final)
 ```
+
+    # A tibble: 6 × 6
+      dataset  mean_dataset_x mean_dataset_y sd_dataset_x sd_dataset_y     n
+      <chr>             <dbl>          <dbl>        <dbl>        <dbl> <int>
+    1 away               54.3           47.8         16.8         26.9   142
+    2 bullseye           54.3           47.8         16.8         26.9   142
+    3 circle             54.3           47.8         16.8         26.9   142
+    4 dino               54.3           47.8         16.8         26.9   142
+    5 dots               54.3           47.8         16.8         26.9   142
+    6 h_lines            54.3           47.8         16.8         26.9   142
+
+Are the data sets different in any important way?
+
+**Answer**: Looks like all the data have the same mean and sd which
+probably is not true.. most likely I messed up the analysis. .
 
 # Q2: pivoting
 

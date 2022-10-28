@@ -13,14 +13,45 @@ Download `experiment1.csv` from Canvas (under files). This reports two variables
 
 Create a data frame that contains the mean, standard deviation, and number of points for each treatment. You will want to use functions like `summarise()`, `group_by()`, `mean()`, and `sd()`.
 
-Are the data sets different in any important way?
-
 ```{r, message=FALSE}
 
 library(tidyverse)
 
+E1.DF <- read.csv("experiment1.csv")
+
+view(E1.DF)
+
+E1.DF.MX <- 
+  E1.DF %>% group_by(balls) %>% summarise(mean_balls_x = mean(x)) 
+
+E1.DF.MY <- 
+  E1.DF %>% group_by(balls) %>% summarise(mean_balls_y = mean(y)) 
+
+E1.DF.M <- inner_join(E1.DF.MX, E1.DF.MY, by="balls")
+
+E1.DF.SDX <-
+  E1.DF %>% group_by(balls) %>% summarise(sd_balls_x = sd(x))
+
+E1.DF.SDY <-
+  E1.DF %>% group_by(balls) %>% summarise(sd_balls_y = sd(y))
+
+E1.DF.SD <- inner_join(E1.DF.SDX, E1.DF.SDY, by="balls")
+
+E1.DF.N <-
+  E1.DF %>% group_by(balls) %>% count(balls)
+
+
+E1.DF.Join1 <- inner_join(E1.DF.M, E1.DF.SD, by="balls")
+
+E1.DF.Final <- inner_join(E1.DF.Join1, E1.DF.N, by="balls")                                      
+
+head(E1.DF.Final)
 
 ```
+
+Are the data sets different in any important way?
+
+**Answer**: It does look like the X balls have a different mean of 9 while the y balls have a mean around 7.5 Additionally, the SD of X balls is 3.31 and Y balls is around 2.03
 
 ## Q1b
 
@@ -30,8 +61,41 @@ Now load the file `experiment2.csv`. Again, this describes two variables for mul
 
 library(tidyverse)
 
+E2.DF <- read.csv("experiment2.csv")
+view(E1.DF)
+
+E2.DF.MX <- 
+  E2.DF %>% group_by(dataset) %>% summarise(mean_dataset_x = mean(x)) 
+
+E2.DF.MY <- 	
+  E2.DF %>% group_by(dataset) %>% summarise(mean_dataset_y = mean(y)) 
+
+E2.DF.M <- inner_join(E2.DF.MX, E2.DF.MY, by="dataset")
+
+E2.DF.SDX <-
+  E2.DF %>% group_by(dataset) %>% summarise(sd_dataset_x = sd(x))
+
+E2.DF.SDY <-
+  E2.DF %>% group_by(dataset) %>% summarise(sd_dataset_y = sd(y))
+
+E2.DF.SD <- inner_join(E2.DF.SDX, E2.DF.SDY, by="dataset")
+
+E2.DF.N <-
+  E2.DF %>% group_by(dataset) %>% count(dataset)
+
+
+E2.DF.Join1 <- inner_join(E2.DF.M, E2.DF.SD, by="dataset")
+
+E2.DF.Final <- inner_join(E2.DF.Join1, E2.DF.N, by="dataset")                                      
+
+head(E2.DF.Final)
+
 
 ```
+
+Are the data sets different in any important way?
+
+**Answer**: Looks like all the data have the same mean and sd which probably is not true.. most likely I messed up the analysis. .
 
 # Q2: pivoting
 
