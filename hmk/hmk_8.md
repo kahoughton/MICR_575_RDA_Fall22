@@ -133,7 +133,7 @@ distribution. nice. nice.
 ``` r
 library(tidyverse)
 
-ggplot(data = E2.DF, (aes(x = x, y = y))) +
+ggplot(data = E2.DF, (aes(x = x, y = y, color = dataset))) +
   geom_point() +
   facet_wrap("dataset")
 ```
@@ -206,4 +206,10 @@ make a plot of the two variables with `geom_smooth()`.
 ``` r
 library(tidyverse)
 library(nycflights13)
+
+flights2 <- flights %>%
+  select(year:day, origin, hour)
+
+weather2 <- weather %>%
+  select(year:day, origin, hour)
 ```

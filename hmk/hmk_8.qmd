@@ -51,7 +51,7 @@ head(E1.DF.Final)
 
 Are the data sets different in any important way?
 
-**Answer**: It does look like the X balls have a different mean of 9 while the y balls have a mean around 7.5 Additionally, the SD of X balls is 3.31 and Y balls is around 2.03. Doesn't look like there is a difference between 1 - 4 sets of balls. UNTIL WE LOOK AT THE DATA. wow. very different distrubutions. 
+**Answer**: It does look like the X balls have a different mean of 9 while the y balls have a mean around 7.5 Additionally, the SD of X balls is 3.31 and Y balls is around 2.03. Doesn't look like there is a difference between 1 - 4 sets of balls. UNTIL WE LOOK AT THE DATA. wow. very different distrubutions.
 
 ```{r, message=FALSE}
 
@@ -112,7 +112,7 @@ Are the data sets different in any important way?
 
 library(tidyverse)
 
-ggplot(data = E2.DF, (aes(x = x, y = y))) +
+ggplot(data = E2.DF, (aes(x = x, y = y, color = dataset))) +
   geom_point() +
   facet_wrap("dataset")
 
@@ -172,6 +172,14 @@ If you want, you can use the `lm()` function to make a linear model of departure
 
 library(tidyverse)
 library(nycflights13)
+
+flights2 <- flights %>%
+  select(year:day, origin, hour)
+
+weather2 <- weather %>%
+  select(year:day, origin, hour)
+
+
 
 
 ```
